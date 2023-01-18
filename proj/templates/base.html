@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/styles/style.css">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet"> 
+
+
+    <title>Колпаковка</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="header__row">
+                    <a href="{{ url_for('index') }}" class="header__logo">
+                        <img src="../static/imgs/logo.svg" alt="">
+                    </a>
+                    <div class="header__points">
+                        <div class="header__column">
+                            <a href="{{ url_for('index') }}" class="header__item">Главная</a>
+                        </div>
+                        <div class="header__column">
+                            <a href="{{ url_for('news') }}" class="header__item">Новости</a>
+                        </div>
+                        <div class="header__column">
+                            <a href="{{ url_for('interesting') }}" class="header__item">Интересное</a>
+                        </div>
+                        <div class="header__column">
+                            <a href="{{ url_for('organisation') }}" class="header__item">Организации</a>
+                        </div>
+                        <div class="header__column">
+                            <a href="{{ url_for('contacts') }}" class="header__item">Контакты</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="container container--snow">
+                <div class="content__top">
+                    {% block content_top %}
+                    {% endblock content_top %}
+                </div>
+                <div class="content__row">
+                    <div class="content__left">
+                        {% block content_left %}
+                        {% endblock content_left %}
+                    </div>
+                    <div class="content__right">
+                        <div class="content__right__margin">
+                            {% block content__right__margin %}
+                            {% endblock content__right__margin %}
+                        </div>
+                        <div class="content__right__title">НОВОСТИ</div>
+                        {% for post in posts %}
+                        <div class="content__right__column">
+                            <div class="content__right__item">
+                                <div class="content__right__item__date date">{{ post.create_date.strftime('%d-%m-%Y') }}</div>
+                                <a href="{{ url_for('post', post_id=post.id) }}" class="content__right__item__text">{{ post.title }}</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="container">
+                <div class="footer__row">
+                    <div class="footer__column">
+                        <div class="footer__item">
+                            <p>Колпаковка - посёлок в Шалинском городском округе Свердловской области. Посёлок Колпаковка муниципального образования «Шалинского городского округа» расположен в 24 километрах к северу от посёлка Шаля</p>
+                        </div>
+                    </div>
+                    <div class="footer__column">
+                        <div class="footer__item">
+                            <div class="footer__item__row">
+                                <div class="footer__item__subitem__title">Навигация</div>
+                                <div class="footer__item__subitem__row">
+                                    <a href="{{ url_for('organisation') }}" class="footer__item__subitem__item">Организации</a>
+                                    <a href="{{ url_for('interesting') }}" class="footer__item__subitem__item">Интересное</a>
+                                    <a href="{{ url_for('news') }}" class="footer__item__subitem__item">Новости</a>
+                                    <a href="{{ url_for('contacts') }}" class="footer__item__subitem__item">Контакты</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer__column">
+                        <div class="footer__item footer__item--contact">
+                            <div class="footer__item__title footer--title">Контактная информация</div>
+                            <p class="footer__item__points"><a href="#" >Телефон: +7 (111) 854 859 93</a></p>
+                            <p class="footer__item__points"><a href="#" >Почта: yurii@gmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

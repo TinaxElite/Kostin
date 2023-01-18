@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+
+{% block content__right__margin %}
+
+<div class="content__margin"></div>
+
+{% endblock content__right__margin %}
+
+
+{% block content_left %}
+
+<div class="category">
+    <div class="category__row">
+        <div class="category__title">{{ cat }}</div>
+        {% for post_cat in posts_cat %}
+        <div class="category__item">
+            <div class="category__item__title">
+                <div class="category__item__title__date date">{{ post_cat.create_date.strftime('%d-%m-%Y') }}</div>
+                <a href="{{ url_for('post', post_id=post_cat.id) }}" class="category__item__title__text">{{ post_cat.title.upper() }}</a>
+            </div>
+            <div class="category__item__content">
+                <div class="category__item__content__img">
+                    <img src="../static/imgs/upload/{{ post_cat.img }}" alt="">
+                </div>
+                <div class="category__item__content__text">{{ post_cat.content[:100] }}...</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content_left %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block content__right__margin %}
+
+<div class="content__margin"></div>
+
+{% endblock content__right__margin %}
+
+
+
+{% block content_left %}
+
+<div class="page">
+    <div class="page__row">
+        <div class="page__title">{{ post.title }}</div>
+        <div class="page__creator">
+            <div class="page__author">Автор: {{ post.author }}</div>
+            <div class="page__date date">{{ post.create_date.strftime('%d-%m-%Y') }}</div>
+        </div>
+        <div class="page__image">
+            <img src="../static/imgs/upload/{{ post.img }}" alt="">
+        </div>
+        <div class="page__content">{{ post.content }}</div>
+        <div class="page__last_news">
+            <div class="page__last_news__title">Последние новости</div>
+            {% for last_post in last_posts %}
+            <div class="page__last_news__item">
+                <div class="page__last_news__item__date date">{{ last_post.create_date.strftime('%d-%m-%Y') }}</div>
+                <a href="{{ url_for('post', post_id=last_post.id) }}" class="page__last_news__item__text">{{ last_post.title }}</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content_left %}

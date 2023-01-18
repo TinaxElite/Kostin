@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+
+
+{% block content_top %}
+
+<div class="all">
+    <input checked type="radio" name="respond" id="desktop">
+        <article id="slider">
+                <input checked type="radio" name="slider" id="switch1">
+                <input type="radio" name="slider" id="switch2">
+                <input type="radio" name="slider" id="switch3">
+                <input type="radio" name="slider" id="switch4">
+                <input type="radio" name="slider" id="switch5">
+            <div id="slides">
+                <div id="overflow">
+                    <div class="image">
+                        <article><img src="../static/imgs/forest.jpg"></article>
+                        <article><img src="../static/imgs/forest2.jpg"></article>
+                        <article><img src="../static/imgs/forest.jpg"></article>
+                        <article><img src="../static/imgs/forest.jpg"></article>
+                        <article><img src="../static/imgs/forest.jpg"></article>
+                    </div>
+                </div>
+            </div>
+            <div id="controls">
+                <label for="switch1"></label>
+                <label for="switch2"></label>
+                <label for="switch3"></label>
+                <label for="switch4"></label>
+                <label for="switch5"></label>
+            </div>
+            <div id="active">
+                <label for="switch1"></label>
+                <label for="switch2"></label>
+                <label for="switch3"></label>
+                <label for="switch4"></label>
+                <label for="switch5"></label>
+            </div>
+        </article>
+</div>
+
+{% endblock content_top %}
+
+
+{% block content_left %}
+
+<div class="content__left__title">ИНТЕРЕСНОЕ</div>
+{% for post_interest in posts_interest %}
+<a href="{{ url_for('post', post_id=post_interest.id) }}" class="content__left__column">
+    <div class="content__left__item">
+        <div class="content__left__item__img">
+            <img src="../static/imgs/upload/{{ post_interest.img }}" alt="">
+        </div>
+        <div class="content__left__item__info">
+            <div class="content__left__item__info__date date">{{ post_interest.create_date.strftime('%d-%m-%Y') }}</div>
+            <div class="content__left__item__info__text">{{ post_interest.content[:200] }}...</div>
+        </div>
+    </div>
+</a>
+{% endfor %}
+
+
+{% endblock content_left %}
